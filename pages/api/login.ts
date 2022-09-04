@@ -4,7 +4,11 @@ import * as jose from 'jose'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import type { CookieSerializeOptions } from 'cookie'
 
-import { ACCEPTED_CREDENTIAL, JWT_SECRET } from '../../lib/contants'
+import {
+  ACCEPTED_CREDENTIAL,
+  COOKIE_DOMAIN,
+  JWT_SECRET,
+} from '../../lib/contants'
 
 type Data = {
   name: string
@@ -12,7 +16,7 @@ type Data = {
 
 export const COOKIE_CONFIG: CookieSerializeOptions = {
   path: '/',
-  domain: 'localhost',
+  domain: COOKIE_DOMAIN,
   httpOnly: true,
   maxAge: 60,
   sameSite: 'lax',
