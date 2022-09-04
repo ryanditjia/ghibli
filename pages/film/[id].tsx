@@ -11,7 +11,6 @@ type DetailProps = {
 }
 
 const FilmDetail: NextPage<DetailProps> = ({ film, characters }) => {
-  console.log(characters)
   return (
     <main className={styles.main}>
       <Link href="/">
@@ -39,13 +38,23 @@ export const getStaticProps: GetStaticProps<DetailProps> = async (context) => {
   const res = await fetch(`https://ghibliapi.herokuapp.com/films/${filmId}`)
   const film: Film = await res.json()
 
-  // parallel fetch all characters data
-  const allCharactersPromises = film.people.map((character) =>
-    fetch(character).then((res) => res.json())
-  )
-  const characters = (await Promise.all(allCharactersPromises)).map(
-    (c) => c.name // unpack the name only
-  )
+  let characters: string[]
+
+  // "Grave of the Fireflies" has a slightly different
+  // `people` field, and I don’t have time to fix it for this demo
+  // this if block is workaround
+  if (film.people[0] === 'https://ghibliapi.herokuapp.com/people/') {
+    characters = []
+  } else {
+    // parallel fetch all characters data
+    const allCharactersPromises = film.people.map((character) =>
+      fetch(character).then((res) => res.json())
+    )
+    characters = (await Promise.all(allCharactersPromises)).map(
+      (c) => c.name // unpack the name only
+    )
+
+  }
 
   return {
     props: {
