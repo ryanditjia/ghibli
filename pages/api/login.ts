@@ -1,10 +1,10 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { serialize } from 'cookie'
-import jwt from 'jsonwebtoken'
+import * as jose from 'jose'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import type { CookieSerializeOptions } from 'cookie'
 
-import { ACCEPTED_CREDENTIAL } from '../../lib/contants'
+import { ACCEPTED_CREDENTIAL, JWT_SECRET } from '../../lib/contants'
 
 type Data = {
   name: string
@@ -18,7 +18,7 @@ export const COOKIE_CONFIG: CookieSerializeOptions = {
   sameSite: 'lax',
 }
 
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
@@ -30,15 +30,17 @@ export default function handler(
     res.status(401).end()
   }
 
-  const token = jwt.sign(
-    {
-      username: 'demo',
-    },
-    'secret',
-    {
-      expiresIn: 60,
-    }
-  )
+  const iat = Math.floor(Date.now() / 1000)
+  const exp = iat + 60 // one minute
+
+  const token = await new jose.SignJWT({
+    username: ACCEPTED_CREDENTIAL.USERNAME,
+  })
+    .setProtectedHeader({ alg: 'HS256' })
+    .setIssuedAt(iat)
+    .setExpirationTime(exp)
+    .setNotBefore(iat)
+    .sign(new TextEncoder().encode(JWT_SECRET))
 
   res.setHeader('Set-Cookie', [serialize('session', token, COOKIE_CONFIG)])
   res.status(204).end()
