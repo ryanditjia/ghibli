@@ -41,7 +41,20 @@ Uses `Next.js` routing
 
 ## Unit test
 
-TODO
+Uses `React-Testing-Library` with `Jest` for unit test.
+
+If it weren’t for time constraint, I would prefer a more end-to-end test with Cypress/Playwright so we can test the login, session, server-side data fetching.
+
+Ideal:
+
+- Playwright
+- MSW (Mock Service Worker) to mock the fetches
+
+Would add at least the following E2E tests:
+
+- happy path (not logged in => login form => logged in)
+- login form incorrect credentials
+- error on pages when: API errors or unknown film ID
 
 ## API best practices
 
