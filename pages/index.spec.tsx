@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 
-import FilmsPage from './index'
+import FilmsPage from './index.page'
 import filmsMock from '../lib/mocks/films.json'
 
 describe('Films page', () => {

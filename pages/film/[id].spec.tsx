@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 
-import FilmDetailPage from './[id]'
+import FilmDetailPage from './[id].page'
 import filmMock from '../../lib/mocks/castle-in-the-sky.json'
 import charactersMock from '../../lib/mocks/castle-in-the-sky-chars.json'
 
