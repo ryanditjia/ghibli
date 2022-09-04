@@ -1,0 +1,51 @@
+.main {
+  padding: 1.25rem;
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+.film {
+  box-shadow: 0 10px 15px -3px rgb(0 0 0/0.1), 0 4px 6px -4px rgb(0 0 0/0.1);
+  border-radius: 8px;
+  border: solid 1px #ddd;
+  padding: 1rem;
+}
+
+.film + .film {
+  margin-top: 1rem;
+}
+
+.film a {
+  display: flex;
+}
+
+.image_container {
+  flex-shrink: 0;
+}
+
+.image {
+  border-radius: 4px;
+}
+
+.detail_container {
+  margin-left: 1rem;
+}
+
+.title {
+  font-size: 1.25rem;
+  color: royalblue;
+  margin: 0;
+}
+
+.japanese_title {
+  margin: 0;
+  margin-top: 0.5rem;
+  color: slategray;
+}
+
+.description {
+  color: darkslategrey;
+  margin: 0;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+}
