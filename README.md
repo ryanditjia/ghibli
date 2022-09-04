@@ -67,3 +67,7 @@ Would add at least the following E2E tests:
 Store session in cookie so it can be verified server-side. And sign the JWT with a secret so the token can’t be tampered with.
 
 TTL is done using the cookie `maxAge`, as well as the expiry of the JWT token itself.
+
+## Issues
+
+Some films, e.g. Grave of the Fireflies, has non-standard `people` value, [see](https://ghibliapi.herokuapp.com/films/12cfb892-aac0-4c5b-94af-521852e46d6a). Due to time constraint, I used workaround to display no characters.
