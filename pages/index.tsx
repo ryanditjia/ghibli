@@ -2,26 +2,15 @@ import Link from 'next/link'
 import Image from 'next/image'
 import type { GetStaticProps, NextPage } from 'next'
 
-import styles from './index.module.css'
+import { Film } from '../lib/types'
 
-type Film = {
-  // truncated
-  id: string
-  title: string
-  original_title: string
-  image: string
-  movie_banner: string
-  release_date: string
-  description: string
-}
+import styles from './index.module.css'
 
 type HomeProps = {
   films: Film[]
 }
 
 const Home: NextPage<HomeProps> = ({ films }) => {
-  console.log(films)
-
   return (
     <main className={styles.main}>
       <h1>Studio Ghibli Films</h1>
