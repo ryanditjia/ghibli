@@ -15,3 +15,42 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## State management
+
+No state management needed for film data, because we make use of `Next.js` server-side data fetching strategy (`getStaticProps`).
+
+Simple state management (only `useState`) for form.
+
+## Component structure & design
+
+Since it’s a small app, I didn’t feel the need to break into smaller components.
+
+## Page load efficiency
+
+![](/lighthouse.png)
+
+Could be improved:
+
+- Add `next/head` for SEO meta tags (title, description, and so on)
+- Add PWA capability using `next-pwa` package
+
+## URL routing management
+
+Uses `Next.js` routing
+
+## Unit test
+
+TODO
+
+## API best practices
+
+### Error handling
+
+`getStaticPaths` will handle the 404 (incorrect film ID)
+
+### Session management & validation
+
+Store session in cookie so it can be verified server-side. And sign the JWT with a secret so the token can’t be tampered with.
+
+TTL is done using the cookie `maxAge`, as well as the expiry of the JWT token itself.
