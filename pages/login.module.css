@@ -2,9 +2,15 @@
   padding: 20px;
 }
 
+.form label,
+.form button,
+.help_text,
+.error_text {
+  margin-top: 12px;
+}
+
 .form label {
   display: block;
-  margin-top: 12px;
 }
 
 .form input {
@@ -12,11 +18,23 @@
 }
 
 .form button {
-  margin-top: 12px;
   padding: 8px 12px;
   background-color: rebeccapurple;
   border: none;
   color: white;
   border-radius: 4px;
   font-weight: 700;
+}
+
+.help_text,
+.error_text {
+  font-size: 0.875rem;
+}
+
+.help_text {
+  color: lightslategrey;
+}
+
+.error_text {
+  color: crimson;
 }
